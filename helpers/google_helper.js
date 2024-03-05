@@ -61,7 +61,6 @@ const getGoogleAccountFromCode = async (code, cb) => {
       displayPicture: userResponse.data.picture,
       email: userResponse.data.email,
     };
-    console.log("🚀 ~ userProfile:", userProfile);
 
     return userProfile;
   } catch (error) {

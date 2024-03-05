@@ -7,6 +7,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  googleAccessToken: {
+    type: String,
+    required: false,
+  },
   name: {
     type: String,
     required: false,
