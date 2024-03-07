@@ -4,7 +4,8 @@ const axios = require("axios");
 const googleConfig = {
   clientId: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  redirect: "http://localhost:3000/auth/success",
+  clientSecret: process.env.FRONTEND_BASE_URL,
+  redirect: process.env.FRONTEND_BASE_URL, //"http://localhost:3000/auth/success",
 };
 
 // scopes use for the application
