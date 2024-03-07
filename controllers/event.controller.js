@@ -160,6 +160,52 @@ class EventController {
       return res.status(response.status).json(response);
     }
   }
+  /**
+   * @param req request body
+   * @param res callback response object
+   * @description Method to logout
+   * @date 28 Feb 2024
+   * @updated 28 Feb 2024
+   */
+  static async disconnectCalendar(req, res) {
+    let response = ResponseHelper.getResponse(
+      false,
+      "Something went wrong",
+      {},
+      400
+    );
+
+    try {
+      const authorizationToken = req.headers["authorization"].split(" ");
+      const userEmail = jwt.verify(
+        authorizationToken[1],
+        process.env.JWT_SECRET_STRING
+      );
+      const user = await User.findOne({ email: userEmail?.email });
+      if (!user) {
+        response.message = "User not found with this email.";
+        return;
+      }
+      await User.updateOne(
+        { _id: user?._id },
+        {
+          $set: {
+            googleAccessToken: "",
+          },
+        }
+      );
+      await Event.deleteMany({ userId: user?._id });
+      response.success = true;
+      response.message = "Calender disconnected successfully.";
+      response.status = 200;
+    } catch (err) {
+      console.log("error", err);
+      response.message = err.message || "Internal Server Error";
+      response.status = 500;
+    } finally {
+      return res.status(response.status).json(response);
+    }
+  }
 }
 
 module.exports = EventController;
