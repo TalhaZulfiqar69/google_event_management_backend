@@ -23,7 +23,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `${process.env.FRONTEND_BASE_URL}/auth/success`, //"http://localhost:3000/auth/success",
+      callbackURL: `${process.env.FRONTEND_BASE_URL}/auth/success`,
     },
     (accessToken, refreshToken, profile, done) => {
       const session = {

@@ -10,7 +10,6 @@ const checkIfAuthenticated = async (req, res, next) => {
           jwt.verify(token, process.env.JWT_SECRET_STRING);
           next(); // User is authenticated, proceed to the next middleware or route handler
         } catch (error) {
-          console.log("JWT verification failed:", error);
           return res.status(401).json({ message: "Unauthorized" });
         }
       } else {

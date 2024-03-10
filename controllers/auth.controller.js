@@ -26,7 +26,6 @@ class AuthController {
       const { email, name, password } = req.body;
 
       const hashedPassword = bcrypt.hashSync(password, saltRounds);
-      console.log({ email, name, password, hashedPassword });
       const user = await User.create({
         email,
         name,
