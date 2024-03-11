@@ -68,7 +68,8 @@ class EventController {
         eventsData.push({
           userId: user?._id,
           eventName: event?.summary,
-          eventDate: event?.originalStartTime?.dateTime,
+          eventDate:
+            event?.originalStartTime?.dateTime || event?.start?.dateTime,
           end: event?.end?.dateTime,
           start: event?.start?.dateTime,
           description: event?.description,
